@@ -29,9 +29,24 @@ get_name_in_email(['abb#ccc'])                            | ['ERROR invaid email
 get_name_in_email([None])                                 | ['ERROR invaid email']
 get_name_in_email([None, 'abb#ccc'])                      | ['ERROR invaid email', 'ERROR invaid email']
 """
+
 #endregion debai
+
 
 #region bailam
 def get_name_in_email(email_list):
-  return 'todo'
+    user_list = []
+    for user in email_list:
+        if user != None:
+            if user.find('@gmail.com') >= 0 :
+                user = user.replace('@gmail.com','')
+                for checking in range(0,len(user)):
+                    if not ord(user[checking])  in [45,46,95] and user[checking].isalnum()==False:
+                        exit()
+                user_list.append(user)
+            else:
+                user_list.append('ERROR invaid email')
+        else:
+            user_list.append('ERROR invaid email')
+    return user_list
 #endregion bailam
